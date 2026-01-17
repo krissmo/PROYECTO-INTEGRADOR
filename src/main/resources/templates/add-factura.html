@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agregar Factura</title>
+</head>
+<body>
+    <h1>Agregar Factura</h1>
+
+    <form th:action="@{/add}" th:object="${factura}" method="post">
+        <label>Descripción:
+            <input type="text" th:field="*{descripcion}" />
+        </label>
+        <span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></span>
+        <br/>
+
+        <label>Monto:
+            <input type="number" step="0.01" th:field="*{monto}" />
+        </label>
+        <span th:if="${#fields.hasErrors('monto')}" th:errors="*{monto}"></span>
+        <br/>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="/">Volver</a>
+</body>
+</html>

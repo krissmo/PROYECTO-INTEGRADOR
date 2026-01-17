@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contabilidad TIGO</title>
+</head>
+<body>
+    <h1>Facturas</h1>
+
+    <a href="/add">Agregar Factura</a><br/><br/>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+        <tr th:each="factura : ${facturas}">
+            <td th:text="${factura.id}"></td>
+            <td th:text="${factura.descripcion}"></td>
+            <td th:text="${factura.monto}"></td>
+            <td th:text="${factura.fecha}"></td>
+            <td>
+                <a th:href="@{/edit/{id}(id=${factura.id})}">Editar</a> |
+                <a th:href="@{/delete/{id}(id=${factura.id})}"
+                   onclick="return confirm('¿Seguro que desea borrar esta factura?');">Borrar</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
